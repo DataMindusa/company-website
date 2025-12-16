@@ -1,0 +1,116 @@
+.services-container {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  color: #000000;  /* BLACK TEXT */
+}
+
+/* TITLE */
+.services-title {
+  font-size: 42px;
+  color: #000000; /* BLACK */
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* SUBTITLE */
+.services-subtitle {
+  font-size: 18px;
+  color: #4b5563;  /* SOFT GRAY */
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* GRID LAYOUT */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* SERVICE CARD */
+.service-card {
+  background: #ffffff;  /* WHITE CARDS */
+  padding: 24px;
+  border-radius: 12px;
+  text-align: left;
+  border: 1px solid #e5e7eb;   /* LIGHT GRAY BORDER */
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: #32D48E;  /* BRAND GREEN */
+}
+
+/* CARD TITLE */
+.service-card h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #32D48E;  /* GREEN TITLE */
+}
+
+/* CARD TEXT */
+.service-card p {
+  color: #4b5563;  /* GRAY TEXT */
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* BUTTON */
+.service-btn {
+  background: #32D48E;  /* GREEN BUTTON */
+  color: #ffffff;  /* WHITE TEXT */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.service-btn:hover {
+  background: #29b97a; /* DARKER GREEN */
+}
+
+
+/* SERVICE DETAIL PAGE */
+.service-detail-section {
+  text-align: left;
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.service-detail-section h3 {
+  margin-top: 30px;
+  font-size: 22px;
+  color: #000;
+}
+
+.service-detail-section ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.service-detail-section li {
+  margin-bottom: 8px;
+  color: #4b5563;
+}
+
+/* ACTIONS */
+.service-detail-actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.service-back {
+  text-decoration: none;
+  font-weight: 500;
+  color: #32D48E;
+}
+
+
+

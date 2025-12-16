@@ -1,0 +1,63 @@
+/* NAVBAR MAIN WRAPPER */
+.navbar {
+  width: 100%;
+  background: #ffffff;      /* WHITE BACKGROUND */
+  padding: 18px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #e5e7eb;  /* light soft border for structure */
+}
+
+/* FLEX CONTAINER */
+.navbar-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LOGO WRAPPER */
+.navbar-logo {
+  display: flex;              /* 🔑 REQUIRED FOR IMAGE */
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+/* LOGO IMAGE (THIS FIXES IT) */
+.navbar-logo img {
+  height: 40px;               /* 🔑 FORCES VISIBILITY */
+  width: auto;
+  display: block;
+}
+
+/* OPTIONAL TEXT NEXT TO LOGO */
+.navbar-logo span {
+  color: #000000;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* NAV LINKS */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #000000;     /* BLACK TEXT */
+  font-size: 16px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.navbar-links a:hover {
+  color: #32D48E;     /* GREEN ACCENT ON HOVER */
+}
+
+

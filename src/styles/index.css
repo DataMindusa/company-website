@@ -1,0 +1,88 @@
+/* =========================================================
+   GLOBAL BRAND THEME — LIGHT MODE (White, Black, Green)
+========================================================= */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* BRAND COLORS */
+  --background: #ffffff;      /* White background */
+  --text-color: #000000;      /* Black text */
+  --accent: #32D48E;          /* Green (your brand) */
+  --accent-hover: #29b97a;    /* Darker green hover */
+  --light-gray: #f3f4f6;      /* Soft background sections */
+  --border-color: #e5e7eb;    /* Light border */
+
+  /* Apply global colors */
+  color: var(--text-color);
+  background-color: var(--background);
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================
+   GLOBAL LINK STYLING
+========================================================= */
+a {
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* =========================================================
+   BODY BASE STYLES
+========================================================= */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-color);
+}
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+h1, h2, h3, h4 {
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* =========================================================
+   GLOBAL BUTTON STYLES
+========================================================= */
+button {
+  border-radius: 8px;
+  border: none;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--accent);
+  color: #ffffff;
+  transition: 0.25s;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+/* =========================================================
+   REMOVE VITE LIGHT/DARK MODE OVERRIDES
+========================================================= */
+@media (prefers-color-scheme: light) {
+  :root {
+    background-color: var(--background);
+    color: var(--text-color);
+  }
+}
+
+
