@@ -17,7 +17,7 @@ function ProductDetail() {
         "Multi-device access"
       ],
       status: "Live",
-      launchUrl: "https://fashionapp.yourdomain.com"
+      launchUrl: "https://.yourdomain.com"
     },
 
     "automation-platform": {
