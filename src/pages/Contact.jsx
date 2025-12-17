@@ -8,7 +8,7 @@ function Contact() {
     message: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("");
 
   // Handle input changes
   const handleChange = (e) => {
@@ -18,19 +18,36 @@ function Contact() {
     });
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  // Handle form submission (CONNECTED TO BACKEND)
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+    setStatus("Sending...");
 
-    setSubmitted(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Clear form after submit
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("Thank you! Your message has been sent.");
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        setStatus(data.message || "Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("Failed to send message. Please try again.");
+    }
   };
 
   return (
@@ -40,9 +57,7 @@ function Contact() {
         Have a question or want to work with us? Send us a message.
       </p>
 
-      {submitted && (
-        <p className="success-message">Thank you! Your message has been sent.</p>
-      )}
+      {status && <p className="success-message">{status}</p>}
 
       <form className="contact-form" onSubmit={handleSubmit}>
         <input
@@ -81,4 +96,5 @@ function Contact() {
 }
 
 export default Contact;
+
 
