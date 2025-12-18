@@ -1,6 +1,12 @@
 import { Pool } from "pg";
 import { Resend } from "resend";
 
+console.log("ENV CHECK:", {
+  DATABASE_URL: !!process.env.DATABASE_URL,
+  RESEND_API_KEY: !!process.env.RESEND_API_KEY,
+  CONTACT_RECEIVER_EMAIL: process.env.CONTACT_RECEIVER_EMAIL,
+});
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
@@ -14,43 +20,31 @@ export default async function handler(req, res) {
 
   const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
-
   try {
-    // Save to DB
     await pool.query(
       `INSERT INTO contacts (name, email, message)
        VALUES ($1, $2, $3)`,
       [name, email, message]
     );
 
-    // Send email
-    await resend.emails.send({
-      from: "Contact Form <gabeke23@gmail.com>", // 🔥 FIX
+    const emailResponse = await resend.emails.send({
+      from: "Contact Form <gabeke23@gmail.com>",
       to: process.env.CONTACT_RECEIVER_EMAIL,
       subject: "New Contact Form Submission",
-      html: `
-        <h2>New Message</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
+      html: `<p>${message}</p>`,
     });
 
-    return res.status(200).json({
-      success: true,
-      message: "Message received successfully",
-    });
+    console.log("EMAIL SENT:", emailResponse);
+
+    return res.status(200).json({ success: true });
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("🔥 API ERROR:", error);
     return res.status(500).json({
-      message: "Internal Server Error",
+      message: error.message || "Internal Server Error",
     });
   }
 }
+
 
 
 
