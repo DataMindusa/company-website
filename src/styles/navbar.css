@@ -3,9 +3,9 @@
 ========================================================= */
 .navbar {
   width: 100%;
-  background: #ffffff;      /* WHITE BACKGROUND */
+  background: #ffffff;
   padding: 18px 0;
-  position: sticky;         /* safer than fixed */
+  position: sticky;
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid #e5e7eb;
@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* 🔑 allows wrapping on small screens */
+  flex-wrap: wrap;
 }
 
 /* =========================================================
@@ -35,14 +35,12 @@
   text-decoration: none;
 }
 
-/* LOGO IMAGE */
 .navbar-logo img {
   height: 40px;
   width: auto;
   display: block;
 }
 
-/* OPTIONAL TEXT NEXT TO LOGO */
 .navbar-logo span {
   color: #000000;
   font-size: 18px;
@@ -74,7 +72,40 @@
 }
 
 /* =========================================================
-   TABLET (STACK CLEANLY)
+   HAMBURGER BUTTON (MOBILE)
+========================================================= */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: #000000;
+  margin: 5px 0;
+  transition: 0.3s ease;
+}
+
+/* Hamburger animation */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================================================
+   TABLET
 ========================================================= */
 @media (max-width: 1024px) {
   .navbar-container {
@@ -87,22 +118,31 @@
 }
 
 /* =========================================================
-   MOBILE (SHOW ALL LINKS — NO CUT OFF)
+   MOBILE (HAMBURGER MENU)
 ========================================================= */
 @media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
   .navbar-links {
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
     padding-top: 12px;
   }
 
+  .navbar-links.active {
+    display: flex;
+  }
+
   .navbar-links a {
     font-size: 16px;
   }
 }
+
 
 
 
