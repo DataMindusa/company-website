@@ -35,7 +35,7 @@ export default async function handler(req, res) {
 
     // 2️⃣ Send email notification (PRODUCTION READY)
     await resend.emails.send({
-      from: "DataMind USA <contact@send.datamindusa.com>",
+      from: "DataMind USA <onboarding@resend.dev>",
       to: process.env.CONTACT_RECEIVER_EMAIL,
       replyTo: email,
       subject: "New Contact Form Submission",
@@ -46,6 +46,7 @@ export default async function handler(req, res) {
         <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
+      replyTo: email,
     });
 
     // ✅ Success response
