@@ -1,102 +1,86 @@
-/* =========================================================
-   NAVBAR WRAPPER
-========================================================= */
+/* ================================
+   NAVBAR BASE
+================================ */
 .navbar {
-  position: sticky;
-  top: 0;
   width: 100%;
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
   z-index: 1000;
 }
 
-/* =========================================================
-   NAVBAR CONTAINER
-========================================================= */
+/* ================================
+   CONTAINER
+================================ */
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 14px 16px;
+  padding: 16px 20px;
+
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 🔑 pushes ☰ to right */
-  position: relative;            /* 🔑 anchor for mobile menu */
+  justify-content: space-between;
 }
 
-/* =========================================================
+/* ================================
    LOGO
-========================================================= */
+================================ */
 .navbar-logo {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
-  color: #000000;
+  color: #000;
   text-decoration: none;
 }
 
-/* =========================================================
-   NAV LINKS — DESKTOP
-========================================================= */
-.navbar-links {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-links a {
-  text-decoration: none;
-  color: #000000;
-  font-weight: 500;
-}
-
-.navbar-links a:hover {
-  color: #32D48E;
-}
-
-/* =========================================================
+/* ================================
    HAMBURGER BUTTON
-========================================================= */
-.hamburger {
-  display: none;                 /* hidden on desktop */
-  font-size: 28px;
-  background: transparent;
+================================ */
+.menu-toggle {
+  background: none;
   border: none;
+  font-size: 28px;
   cursor: pointer;
-  color: #000000;                /* 🔑 visible on white */
-  padding: 6px 10px;
-  z-index: 2000;                 /* 🔑 above everything */
+  color: #000;
+  display: flex;
+  align-items: center;
 }
 
-/* =========================================================
-   MOBILE NAVBAR
-========================================================= */
-@media (max-width: 768px) {
+/* ================================
+   MOBILE MENU
+================================ */
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
 
-  /* Show hamburger */
-  .hamburger {
-    display: block;
-  }
+.mobile-menu a {
+  padding: 16px 20px;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
+  border-bottom: 1px solid #f3f4f6;
+}
 
-  /* Hide links by default */
-  .navbar-links {
+.mobile-menu a:hover {
+  background: #f9fafb;
+}
+
+/* ================================
+   DESKTOP (FUTURE READY)
+================================ */
+@media (min-width: 768px) {
+  .menu-toggle {
     display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: #ffffff;
-    flex-direction: column;
-    gap: 16px;
-    padding: 16px;
-    border-bottom: 1px solid #e5e7eb;
   }
 
-  /* Show when active */
-  .navbar-links.active {
-    display: flex;
+  .mobile-menu {
+    display: none;
   }
 }
+
 
 
 

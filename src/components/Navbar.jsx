@@ -10,29 +10,32 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Logo */}
         <Link to="/" className="navbar-logo">
-          <span>DataMind</span>
+          DataMind
         </Link>
 
-        {/* Hamburger */}
+        {/* Hamburger Button */}
         <button
-          className="hamburger"
+          className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
           ☰
         </button>
-
-        {/* Links */}
-        <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
-          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-          <li><Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link></li>
-          <li><Link to="/products" onClick={() => setMenuOpen(false)}>Products</Link></li>
-          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
-        </ul>
       </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="mobile-menu">
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        </div>
+      )}
     </nav>
   );
 }
+
 
 
 
