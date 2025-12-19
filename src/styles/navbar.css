@@ -1,34 +1,43 @@
-/* NAVBAR MAIN WRAPPER */
+/* =========================================================
+   NAVBAR MAIN WRAPPER
+========================================================= */
 .navbar {
   width: 100%;
   background: #ffffff;      /* WHITE BACKGROUND */
   padding: 18px 0;
-  position: sticky;
+  position: sticky;         /* safer than fixed */
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid #e5e7eb;  /* light soft border for structure */
+  border-bottom: 1px solid #e5e7eb;
 }
 
-/* FLEX CONTAINER */
+/* =========================================================
+   FLEX CONTAINER
+========================================================= */
 .navbar-container {
-  width: 90%;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 16px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* 🔑 allows wrapping on small screens */
 }
 
-/* LOGO WRAPPER */
+/* =========================================================
+   LOGO WRAPPER
+========================================================= */
 .navbar-logo {
-  display: flex;              /* 🔑 REQUIRED FOR IMAGE */
+  display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
 }
 
-/* LOGO IMAGE (THIS FIXES IT) */
+/* LOGO IMAGE */
 .navbar-logo img {
-  height: 40px;               /* 🔑 FORCES VISIBILITY */
+  height: 40px;
   width: auto;
   display: block;
 }
@@ -41,23 +50,59 @@
   letter-spacing: 0.5px;
 }
 
-/* NAV LINKS */
+/* =========================================================
+   NAV LINKS (DESKTOP DEFAULT)
+========================================================= */
 .navbar-links {
   list-style: none;
   display: flex;
   gap: 24px;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-links a {
   text-decoration: none;
-  color: #000000;     /* BLACK TEXT */
+  color: #000000;
   font-size: 16px;
-  transition: 0.3s;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .navbar-links a:hover {
-  color: #32D48E;     /* GREEN ACCENT ON HOVER */
+  color: #32D48E;
 }
+
+/* =========================================================
+   TABLET (STACK CLEANLY)
+========================================================= */
+@media (max-width: 1024px) {
+  .navbar-container {
+    gap: 12px;
+  }
+
+  .navbar-links {
+    gap: 20px;
+  }
+}
+
+/* =========================================================
+   MOBILE (SHOW ALL LINKS — NO CUT OFF)
+========================================================= */
+@media (max-width: 768px) {
+  .navbar-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-top: 12px;
+  }
+
+  .navbar-links a {
+    font-size: 16px;
+  }
+}
+
 
 
