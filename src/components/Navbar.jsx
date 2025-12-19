@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./navbar.css";
-import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
+import "../styles/navbar.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,31 +8,31 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <a href="/" className="navbar-logo">
-          <img src={logo} alt="DataMind USA" />
-          <span>DataMind USA</span>
-        </a>
+        {/* Logo */}
+        <Link to="/" className="navbar-logo">
+          <span>DataMind</span>
+        </Link>
 
         {/* Hamburger */}
-        <div
+        <button
           className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+          ☰
+        </button>
 
         {/* Links */}
-        <ul className={`navbar-links ${menuOpen ? "open" : ""}`}>
-          <li><a href="/">Home</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/products">Products</a></li>
-          <li><a href="/contact">Contact</a></li>
+        <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+          <li><Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link></li>
+          <li><Link to="/products" onClick={() => setMenuOpen(false)}>Products</Link></li>
+          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
         </ul>
       </div>
     </nav>
   );
 }
+
 
 
