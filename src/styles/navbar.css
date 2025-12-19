@@ -1,31 +1,41 @@
-/* NAVBAR */
+/* =========================================================
+   NAVBAR WRAPPER
+========================================================= */
 .navbar {
   position: sticky;
   top: 0;
+  width: 100%;
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
   z-index: 1000;
 }
 
-/* CONTAINER */
+/* =========================================================
+   NAVBAR CONTAINER
+========================================================= */
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 14px 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* 🔑 pushes ☰ to right */
+  position: relative;            /* 🔑 anchor for mobile menu */
 }
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 .navbar-logo {
   font-size: 18px;
   font-weight: 700;
-  color: #000;
+  color: #000000;
   text-decoration: none;
 }
 
-/* LINKS (DESKTOP) */
+/* =========================================================
+   NAV LINKS — DESKTOP
+========================================================= */
 .navbar-links {
   list-style: none;
   display: flex;
@@ -36,29 +46,43 @@
 
 .navbar-links a {
   text-decoration: none;
-  color: #000;
+  color: #000000;
   font-weight: 500;
 }
 
-/* HAMBURGER (HIDDEN ON DESKTOP) */
-.hamburger {
-  display: none;
-  font-size: 26px;
-  background: none;
-  border: none;
-  cursor: pointer;
+.navbar-links a:hover {
+  color: #32D48E;
 }
 
-/* MOBILE */
+/* =========================================================
+   HAMBURGER BUTTON
+========================================================= */
+.hamburger {
+  display: none;                 /* hidden on desktop */
+  font-size: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #000000;                /* 🔑 visible on white */
+  padding: 6px 10px;
+  z-index: 2000;                 /* 🔑 above everything */
+}
+
+/* =========================================================
+   MOBILE NAVBAR
+========================================================= */
 @media (max-width: 768px) {
+
+  /* Show hamburger */
   .hamburger {
     display: block;
   }
 
+  /* Hide links by default */
   .navbar-links {
     display: none;
     position: absolute;
-    top: 64px;
+    top: 60px;
     left: 0;
     width: 100%;
     background: #ffffff;
@@ -68,10 +92,12 @@
     border-bottom: 1px solid #e5e7eb;
   }
 
+  /* Show when active */
   .navbar-links.active {
     display: flex;
   }
 }
+
 
 
 
