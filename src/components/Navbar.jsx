@@ -1,34 +1,33 @@
 import { useState } from "react";
 import "./navbar.css";
+import logo from "../assets/logo.png";
 
-function Navbar() {
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* LOGO */}
         <a href="/" className="navbar-logo">
-          <img src="/logo.png" alt="DataMind USA Logo" />
+          <img src={logo} alt="DataMind USA" />
           <span>DataMind USA</span>
         </a>
 
-        {/* HAMBURGER BUTTON (MOBILE ONLY) */}
-        <button
-          className={`hamburger ${menuOpen ? "open" : ""}`}
+        {/* Hamburger */}
+        <div
+          className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation"
         >
-          <span />
-          <span />
-          <span />
-        </button>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-        {/* NAV LINKS */}
-        <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
+        {/* Links */}
+        <ul className={`navbar-links ${menuOpen ? "open" : ""}`}>
           <li><a href="/">Home</a></li>
           <li><a href="/services">Services</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="/products">Products</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
@@ -36,5 +35,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
 

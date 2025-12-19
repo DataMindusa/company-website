@@ -1,10 +1,9 @@
 /* =========================================================
-   NAVBAR MAIN WRAPPER
+   NAVBAR WRAPPER
 ========================================================= */
 .navbar {
   width: 100%;
   background: #ffffff;
-  padding: 18px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -12,21 +11,19 @@
 }
 
 /* =========================================================
-   FLEX CONTAINER
+   NAV CONTAINER
 ========================================================= */
 .navbar-container {
-  width: 100%;
   max-width: 1200px;
-  padding: 0 16px;
   margin: 0 auto;
+  padding: 14px 16px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 /* =========================================================
-   LOGO WRAPPER
+   LOGO
 ========================================================= */
 .navbar-logo {
   display: flex;
@@ -37,34 +34,29 @@
 
 .navbar-logo img {
   height: 40px;
-  width: auto;
-  display: block;
 }
 
 .navbar-logo span {
-  color: #000000;
-  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: 18px;
+  color: #000;
 }
 
 /* =========================================================
-   NAV LINKS (DESKTOP DEFAULT)
+   NAV LINKS (DESKTOP)
 ========================================================= */
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 24px;
+  gap: 28px;
   margin: 0;
   padding: 0;
 }
 
 .navbar-links a {
   text-decoration: none;
-  color: #000000;
-  font-size: 16px;
+  color: #000;
   font-weight: 500;
-  transition: color 0.3s ease;
 }
 
 .navbar-links a:hover {
@@ -72,76 +64,51 @@
 }
 
 /* =========================================================
-   HAMBURGER BUTTON (MOBILE)
+   HAMBURGER BUTTON (HIDDEN DESKTOP)
 ========================================================= */
 .hamburger {
   display: none;
-  background: none;
-  border: none;
+  flex-direction: column;
+  gap: 5px;
   cursor: pointer;
-  padding: 8px;
 }
 
 .hamburger span {
-  display: block;
-  width: 26px;
+  width: 24px;
   height: 3px;
-  background: #000000;
-  margin: 5px 0;
-  transition: 0.3s ease;
-}
-
-/* Hamburger animation */
-.hamburger.open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  background: #000;
+  border-radius: 2px;
 }
 
 /* =========================================================
-   TABLET
-========================================================= */
-@media (max-width: 1024px) {
-  .navbar-container {
-    gap: 12px;
-  }
-
-  .navbar-links {
-    gap: 20px;
-  }
-}
-
-/* =========================================================
-   MOBILE (HAMBURGER MENU)
+   MOBILE MENU
 ========================================================= */
 @media (max-width: 768px) {
   .hamburger {
-    display: block;
-  }
-
-  .navbar-links {
-    width: 100%;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    padding-top: 12px;
-  }
-
-  .navbar-links.active {
     display: flex;
   }
 
-  .navbar-links a {
-    font-size: 16px;
+  .navbar-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
+    border-bottom: 1px solid #e5e7eb;
+
+    /* hidden by default */
+    display: none;
+  }
+
+  .navbar-links.open {
+    display: flex;
   }
 }
+
 
 
 
