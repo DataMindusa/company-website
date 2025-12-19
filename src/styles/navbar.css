@@ -33,7 +33,7 @@
 }
 
 /* ================================
-   HAMBURGER BUTTON
+   HAMBURGER (MOBILE)
 ================================ */
 .menu-toggle {
   background: none;
@@ -61,12 +61,22 @@
   border-bottom: 1px solid #f3f4f6;
 }
 
-.mobile-menu a:hover {
-  background: #f9fafb;
+/* ================================
+   DESKTOP MENU
+================================ */
+.desktop-menu {
+  display: none;
+  gap: 24px;
+}
+
+.desktop-menu a {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
 }
 
 /* ================================
-   DESKTOP
+   DESKTOP LAYOUT
 ================================ */
 @media (min-width: 1024px) {
   .navbar-container {
@@ -81,7 +91,12 @@
   .mobile-menu {
     display: none;
   }
+
+  .desktop-menu {
+    display: flex;
+  }
 }
+
 
 
 

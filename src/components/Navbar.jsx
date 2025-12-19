@@ -8,12 +8,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo */}
-        <Link to="/" className="navbar-logo">
-          DataMind
-        </Link>
-
-        {/* Hamburger Button */}
+        {/* Mobile Hamburger */}
         <button
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -21,6 +16,19 @@ export default function Navbar() {
         >
           ☰
         </button>
+
+        {/* Logo */}
+        <Link to="/" className="navbar-logo">
+          DataMind
+        </Link>
+
+        {/* Desktop Menu */}
+        <div className="desktop-menu">
+          <Link to="/">Home</Link>
+          <Link to="/services">Services</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -35,6 +43,7 @@ export default function Navbar() {
     </nav>
   );
 }
+
 
 
 
