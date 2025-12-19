@@ -11,9 +11,9 @@
 }
 
 /* ================================
-   CONTAINER (MOBILE FIRST)
+   INNER BAR (MOBILE FIRST)
 ================================ */
-.navbar-container {
+.navbar-inner {
   width: 100%;
   padding: 16px 20px;
 
@@ -79,7 +79,7 @@
    DESKTOP LAYOUT
 ================================ */
 @media (min-width: 1024px) {
-  .navbar-container {
+  .navbar-inner {
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -96,6 +96,8 @@
     display: flex;
   }
 }
+
+
 
 
 

@@ -7,16 +7,8 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-container">
-        {/* Mobile Hamburger */}
-        <button
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          ☰
-        </button>
-
+      {/* TOP BAR */}
+      <div className="navbar-inner">
         {/* Logo */}
         <Link to="/" className="navbar-logo">
           DataMind
@@ -29,6 +21,15 @@ export default function Navbar() {
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
       </div>
 
       {/* Mobile Menu */}
@@ -43,6 +44,7 @@ export default function Navbar() {
     </nav>
   );
 }
+
 
 
 
