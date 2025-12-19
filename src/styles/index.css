@@ -1,4 +1,19 @@
 /* =========================================================
+   GLOBAL RESET & MOBILE SAFETY
+========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* =========================================================
    GLOBAL BRAND THEME — LIGHT MODE (White, Black, Green)
 ========================================================= */
 :root {
@@ -9,18 +24,27 @@
   /* BRAND COLORS */
   --background: #ffffff;      /* White background */
   --text-color: #000000;      /* Black text */
-  --accent: #32D48E;          /* Green (your brand) */
+  --accent: #32D48E;          /* Green (brand) */
   --accent-hover: #29b97a;    /* Darker green hover */
   --light-gray: #f3f4f6;      /* Soft background sections */
   --border-color: #e5e7eb;    /* Light border */
 
-  /* Apply global colors */
   color: var(--text-color);
   background-color: var(--background);
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================
+   RESPONSIVE CONTAINER (CRITICAL)
+========================================================= */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 /* =========================================================
@@ -40,7 +64,6 @@ a:hover {
    BODY BASE STYLES
 ========================================================= */
 body {
-  margin: 0;
   min-width: 320px;
   min-height: 100vh;
   background: var(--background);
@@ -50,13 +73,25 @@ body {
 /* =========================================================
    HEADINGS
 ========================================================= */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: var(--text-color);
   margin: 0;
 }
 
 /* =========================================================
-   GLOBAL BUTTON STYLES
+   GLOBAL IMAGE SAFETY (PREVENTS LAYOUT SHIFT)
+========================================================= */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================================================
+   GLOBAL BUTTON STYLES (MOBILE SAFE)
 ========================================================= */
 button {
   border-radius: 8px;
@@ -68,11 +103,69 @@ button {
   cursor: pointer;
   background: var(--accent);
   color: #ffffff;
-  transition: 0.25s;
+  transition: background-color 0.25s ease;
+  width: 100%;
+  max-width: 320px;
 }
 
 button:hover {
   background: var(--accent-hover);
+}
+
+@media (min-width: 768px) {
+  button {
+    width: auto;
+  }
+}
+
+/* =========================================================
+   MOBILE RESPONSIVENESS (PHONES)
+========================================================= */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 32px 0;
+  }
+
+  .container {
+    padding: 0 14px;
+  }
+}
+
+/* =========================================================
+   TABLET RESPONSIVENESS (iPad & Similar)
+========================================================= */
+@media (min-width: 481px) and (max-width: 1024px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 48px 0;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
 }
 
 /* =========================================================
@@ -84,5 +177,6 @@ button:hover {
     color: var(--text-color);
   }
 }
+
 
 
