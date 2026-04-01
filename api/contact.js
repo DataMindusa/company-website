@@ -37,6 +37,9 @@ function sanitize(input) {
 ========================================= */
 export default async function handler(req, res) {
   try {
+    /* =========================================
+       ❌ METHOD CHECK
+    ========================================= */
     if (req.method !== "POST") {
       return res.status(405).json({ message: "Method Not Allowed" });
     }
@@ -85,8 +88,8 @@ export default async function handler(req, res) {
     /* =========================================
        📧 SEND EMAIL
     ========================================= */
-    await resend.emails.send({
-      from: "DataMind Technologies <admin@datamindtechn.com>", // 🔥 replace with domain later
+    const emailResponse = await resend.emails.send({
+      from: "DataMind Contact <onboarding@resend.dev>", // ✅ safe for now
       to: process.env.CONTACT_RECEIVER_EMAIL,
       subject: "New Contact Form Submission",
       reply_to: cleanEmail,
@@ -109,6 +112,22 @@ export default async function handler(req, res) {
         </div>
       `,
     });
+
+    /* =========================================
+       🔍 EMAIL DEBUG LOGGING
+    ========================================= */
+    console.log("📧 EMAIL RESPONSE:", emailResponse);
+
+    /* =========================================
+       ❌ EMAIL FAILURE CHECK
+    ========================================= */
+    if (!emailResponse || emailResponse.error) {
+      console.error("❌ EMAIL ERROR:", emailResponse?.error);
+
+      return res.status(500).json({
+        message: "Email failed to send",
+      });
+    }
 
     /* =========================================
        ✅ SUCCESS
