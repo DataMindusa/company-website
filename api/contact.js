@@ -86,10 +86,10 @@ export default async function handler(req, res) {
     );
 
     /* =========================================
-       📧 SEND EMAIL
+       📧 SEND EMAIL TO ADMIN (YOU)
     ========================================= */
     const emailResponse = await resend.emails.send({
-      from: "DataMind Technologies <contact@datamindtechn.com>", // ✅ safe for now
+      from: "DataMind Technologies <contact@datamindtechn.com>",
       to: process.env.CONTACT_RECEIVER_EMAIL,
       subject: "New Contact Form Submission",
       reply_to: cleanEmail,
@@ -113,21 +113,45 @@ export default async function handler(req, res) {
       `,
     });
 
-    /* =========================================
-       🔍 EMAIL DEBUG LOGGING
-    ========================================= */
-    console.log("📧 EMAIL RESPONSE:", emailResponse);
+    console.log("📧 ADMIN EMAIL RESPONSE:", emailResponse);
 
-    /* =========================================
-       ❌ EMAIL FAILURE CHECK
-    ========================================= */
     if (!emailResponse || emailResponse.error) {
-      console.error("❌ EMAIL ERROR:", emailResponse?.error);
+      console.error("❌ ADMIN EMAIL ERROR:", emailResponse?.error);
 
       return res.status(500).json({
         message: "Email failed to send",
       });
     }
+
+    /* =========================================
+       📧 AUTO-REPLY TO USER
+    ========================================= */
+    const autoReplyResponse = await resend.emails.send({
+      from: "DataMind Technologies <contact@datamindtechn.com>",
+      to: cleanEmail,
+      subject: "We received your message",
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2>Thank you for contacting DataMind Technologies</h2>
+
+          <p>Hi ${cleanName},</p>
+
+          <p>
+            We’ve received your message and will get back to you shortly.
+          </p>
+
+          <p>
+            Our team is reviewing your request and will respond as soon as possible.
+          </p>
+
+          <br/>
+
+          <p>— DataMind Technologies</p>
+        </div>
+      `,
+    });
+
+    console.log("📧 AUTO-REPLY RESPONSE:", autoReplyResponse);
 
     /* =========================================
        ✅ SUCCESS
