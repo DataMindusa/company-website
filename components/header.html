@@ -1,0 +1,68 @@
+<nav class="navbar">
+  <div class="navbar-inner container">
+
+    <!-- Logo -->
+    <a href="./index.html" class="navbar-logo">
+      <img src="./assets/images/logo.png" alt="DataMind Technologies Logo">
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="desktop-menu">
+      <a href="./index.html">Home</a>
+      <a href="./services.html">Services</a>
+
+      <!-- PRODUCTS DROPDOWN -->
+      <div class="dropdown" id="productsDropdown">
+
+        <!-- ✅ CLICKABLE + CONTROLLED BY JS -->
+        <a 
+          href="./products.html" 
+          class="dropdown-toggle" 
+          id="productsToggle"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Products
+        </a>
+
+        <!-- DROPDOWN MENU -->
+        <div class="dropdown-menu">
+          <a href="./products/fashionapp.html">FashionApp</a>
+          <a href="./products/booking-system.html">Booking System</a>
+          <a href="./products/automation-platform.html">Automation Platform</a>
+        </div>
+
+      </div>
+
+      <a href="./contact.html">Contact</a>
+    </div>
+
+    <!-- Mobile Hamburger -->
+    <button 
+      class="menu-toggle" 
+      id="menuToggle" 
+      type="button" 
+      aria-label="Toggle menu" 
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="./index.html">Home</a>
+    <a href="./services.html">Services</a>
+
+    <!-- MOBILE PRODUCTS -->
+    <div class="mobile-dropdown">
+      <a href="./products.html" class="mobile-dropdown-title">Products</a>
+      <a href="./products/fashionapp.html">FashionApp</a>
+      <a href="./products/booking-system.html">Booking System</a>
+      <a href="./products/automation-platform.html">Automation Platform</a>
+    </div>
+
+    <a href="./contact.html">Contact</a>
+  </div>
+</nav>

@@ -1,62 +1,125 @@
+/* eslint-env node */
+
 import { Pool } from "pg";
 import { Resend } from "resend";
 
-// Create database pool
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+/* =========================================
+   🔧 GLOBAL DB POOL (SAFE FOR VERCEL)
+========================================= */
+const pool =
+  globalThis.pgPool ||
+  new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl:
+      process.env.NODE_ENV === "production"
+        ? { rejectUnauthorized: false }
+        : false,
+  });
 
-// Initialize Resend
+if (!globalThis.pgPool) {
+  globalThis.pgPool = pool;
+}
+
+/* =========================================
+   📧 EMAIL SERVICE
+========================================= */
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+/* =========================================
+   🛠 HELPER: SANITIZE INPUT
+========================================= */
+function sanitize(input) {
+  return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/* =========================================
+   🚀 HANDLER
+========================================= */
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method Not Allowed" });
-  }
-
-  const { name, email, message } = req.body;
-
-  // ✅ Basic validation
-  if (!name || !email || !message) {
-    return res.status(400).json({
-      message: "All fields are required",
-    });
-  }
-
   try {
-    // 1️⃣ Save message to database
+    if (req.method !== "POST") {
+      return res.status(405).json({ message: "Method Not Allowed" });
+    }
+
+    const { name, email, message } = req.body || {};
+
+    /* =========================================
+       ✅ VALIDATION
+    ========================================= */
+    if (!name || !email || !message) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
+    }
+
+    const cleanName = sanitize(name.trim());
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanMessage = sanitize(message.trim());
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      return res.status(400).json({
+        message: "Invalid email address",
+      });
+    }
+
+    // Prevent spam / abuse
+    if (cleanMessage.length > 2000) {
+      return res.status(400).json({
+        message: "Message is too long",
+      });
+    }
+
+    /* =========================================
+       🗄 SAVE TO DATABASE
+    ========================================= */
     await pool.query(
       `
       INSERT INTO contacts (name, email, message)
       VALUES ($1, $2, $3)
       `,
-      [name, email, message]
+      [cleanName, cleanEmail, cleanMessage]
     );
 
-    // 2️⃣ Send email notification (PRODUCTION READY)
+    /* =========================================
+       📧 SEND EMAIL
+    ========================================= */
     await resend.emails.send({
-      from: "DataMind USA <onboarding@resend.dev>",
+      from: "DataMind <onboarding@resend.dev>", // 🔥 replace with domain later
       to: process.env.CONTACT_RECEIVER_EMAIL,
-      replyTo: email,
       subject: "New Contact Form Submission",
+      reply_to: cleanEmail,
       html: `
-        <h2>New Contact Message</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2>📩 New Contact Message</h2>
+
+          <p><strong>Name:</strong> ${cleanName}</p>
+          <p><strong>Email:</strong> ${cleanEmail}</p>
+
+          <p><strong>Message:</strong></p>
+          <div style="
+            background:#f3f4f6;
+            padding:12px;
+            border-radius:8px;
+            line-height:1.5;
+          ">
+            ${cleanMessage}
+          </div>
+        </div>
       `,
-      replyTo: email,
     });
 
-    // ✅ Success response
+    /* =========================================
+       ✅ SUCCESS
+    ========================================= */
     return res.status(200).json({
       success: true,
       message: "Message received successfully",
     });
+
   } catch (error) {
-    // 🔥 Keep error logs only (good practice)
-    console.error("Contact API Error:", error);
+    console.error("❌ Contact API Error:", error);
 
     return res.status(500).json({
       message: "Internal Server Error",

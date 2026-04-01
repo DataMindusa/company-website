@@ -1,34 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+  <!-- META -->
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Canonical domain -->
-  <link rel="canonical" href="https://datamindusa.com" />
+  <!-- SEO -->
+  <title>DataMind Technologies | Build. Automate. Scale.</title>
+  <meta name="description" content="DataMind Technologies helps businesses automate operations, build software, and scale efficiently across the U.S. and Africa."/>
 
-  <!-- Basic SEO -->
-  <title>DataMind USA | Build. Automate. Scale.</title>
-  <meta
-    name="description"
-    content="DataMind USA builds modern business websites, automation platforms, and scalable digital solutions."
-  />
+  <!-- FAVICON HERE -->
+   <link rel="icon" href="./assets/images/favicon.png">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="DataMind USA" />
-  <meta property="og:description" content="Build. Automate. Scale." />
-  <meta property="og:url" content="https://datamindusa.com" />
-  <meta property="og:type" content="website" />
-
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DataMind USA" />
-  <meta name="twitter:description" content="Build. Automate. Scale." />
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<body>
+
+  <!-- HEADER -->
+  <div id="header"></div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- HERO (UPDATED WITH IMAGE) -->
+    <section class="home-container">
+      <div class="hero-wrapper container">
+
+        <!-- LEFT: TEXT -->
+        <div class="hero-text">
+          <h1 class="home-title">Build. Automate. Scale.</h1>
+
+          <p class="home-subtitle">
+            Empowering businesses in the U.S. & Africa with modern software solutions.
+          </p>
+
+          <a href="./services.html" class="home-cta">
+            Get Started
+          </a>
+        </div>
+
+        <!-- RIGHT: IMAGE -->
+        <div class="hero-image">
+          <img src="./assets/images/herosection-image.jpg" alt="Business automation and software solutions">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 🔥 MOVING PRODUCT AD -->
+    <section class="ad-banner">
+      <div class="ad-track">
+        <span>🚀 FashionApp — Manage your fashion business smarter</span>
+        <span>🔥 Booking System — Automate your appointments</span>
+        <span>💡 Automation Tools — Scale faster</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <!-- JS -->
+  <script type="module" src="./js/utils.js"></script>
+
+</body>
 </html>

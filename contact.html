@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- META -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO -->
+  <title>Contact Us | DataMind Technologies</title>
+  <meta name="description" content="Contact DataMind Technologies to build software, automate your business, or start your next digital project."/>
+
+  <!-- FAVICON -->
+  <link rel="icon" href="./assets/images/favicon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id="header"></div>
+
+  <!-- MAIN -->
+  <main>
+
+    <section class="contact-container container">
+
+      <h1 class="contact-title">Contact Us</h1>
+
+      <p class="contact-text">
+        Have a question or want to work with us? Send us a message.
+      </p>
+
+      <!-- STATUS MESSAGE -->
+      <p id="statusMessage" class="success-message"></p>
+
+      <!-- FORM -->
+      <form id="contactForm" class="contact-form">
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Full Name"
+          required
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email Address"
+          required
+        />
+
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          rows="5"
+          required
+        ></textarea>
+
+        <button type="submit" class="contact-btn" id="submitBtn">
+          Send Message
+        </button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <!-- JS -->
+  <script type="module" src="./js/utils.js"></script>
+
+  <!-- CONTACT FORM LOGIC -->
+  <script>
+    const form = document.getElementById("contactForm");
+    const statusMessage = document.getElementById("statusMessage");
+    const submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // 🔒 Prevent double submission
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      statusMessage.textContent = "";
+      statusMessage.className = "success-message";
+
+      const formData = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim()
+      };
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          statusMessage.textContent = "✅ Thank you! Your message has been sent.";
+          statusMessage.className = "success-message";
+
+          form.reset();
+        } else {
+          statusMessage.textContent = data.message || "Something went wrong.";
+          statusMessage.className = "error-message";
+        }
+
+      } catch (error) {
+        console.error(error);
+
+        statusMessage.textContent = "❌ Failed to send message. Please try again.";
+        statusMessage.className = "error-message";
+      }
+
+      // 🔓 Re-enable button
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Message";
+    });
+  </script>
+
+</body>
+</html>
