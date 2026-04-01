@@ -89,7 +89,7 @@ export default async function handler(req, res) {
        📧 SEND EMAIL
     ========================================= */
     const emailResponse = await resend.emails.send({
-      from: "DataMind Contact <onboarding@resend.dev>", // ✅ safe for now
+      from: "DataMind Technologies <contact@datamindtechn.com>", // ✅ safe for now
       to: process.env.CONTACT_RECEIVER_EMAIL,
       subject: "New Contact Form Submission",
       reply_to: cleanEmail,
