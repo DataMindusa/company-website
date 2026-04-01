@@ -86,7 +86,7 @@ export default async function handler(req, res) {
        📧 SEND EMAIL
     ========================================= */
     await resend.emails.send({
-      from: "DataMind <onboarding@resend.dev>", // 🔥 replace with domain later
+      from: "DataMind Technologies <admin@datamindtechn.com>", // 🔥 replace with domain later
       to: process.env.CONTACT_RECEIVER_EMAIL,
       subject: "New Contact Form Submission",
       reply_to: cleanEmail,
