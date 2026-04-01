@@ -1,0 +1,24 @@
+{
+  "name": "my-company-website",
+  "version": "1.0.0",
+  "description": "Official company website for **DataMind USA**.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DataMindusa/company-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DataMindusa/company-website/issues"
+  },
+  "homepage": "https://github.com/DataMindusa/company-website#readme",
+  "dependencies": {
+    "pg": "^8.20.0",
+    "resend": "^6.10.0"
+  }
+}
